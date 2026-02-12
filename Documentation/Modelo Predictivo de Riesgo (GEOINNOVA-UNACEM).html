@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anexo Técnico - Modelo Predictivo de Riesgo (UNACEM)</title>
+
+  <style>
+    :root{
+      --primary: #1a365d;
+      --secondary: #2d3748;
+      --success: #2f855a;
+      --warning: #c05621;
+      --danger: #9b2c2c;
+      --info: #2b6cb0;
+      --text: #1a202c;
+      --muted: #718096;
+      --line: #e2e8f0;
+      --bg: #ffffff;
+      --table-header: #f8fafc;
+      --gray-soft: #f1f5f9;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11pt;
+      line-height: 1.45;
+    }
+
+    .page{
+      max-width: 210mm;
+      margin: 10mm auto;
+      padding: 15mm;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .header-report{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 5mm;
+      margin-bottom: 8mm;
+      gap: 10mm;
+    }
+
+    .header-report h1{
+      margin: 2mm 0 0 0;
+      font-size: 17pt;
+      color: var(--primary);
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .header-report h2{
+      margin: 1mm 0 0 0;
+      font-size: 11pt;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    .anexo-tag{
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 1.2mm 4mm;
+      font-weight: bold;
+      font-size: 9.5pt;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4mm;
+      margin-bottom: 8mm;
+      background: var(--table-header);
+      padding: 5mm;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+    }
+
+    .meta-item{
+      padding: 2mm;
+    }
+
+    .meta-item b{
+      color: var(--primary);
+      font-size: 9pt;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1mm;
+      letter-spacing: 0.3px;
+    }
+
+    .meta-item span{
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    .section-title{
+      margin: 8mm 0 3mm 0;
+      padding: 2mm 0;
+      font-size: 12pt;
+      font-weight: 800;
+      color: var(--primary);
+      border-left: 5px solid var(--primary);
+      padding-left: 3mm;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2mm;
+    }
+
+    thead th{
+      background: var(--table-header);
+      text-align: left;
+      padding: 4mm 3mm;
+      font-size: 9pt;
+      border-bottom: 2px solid var(--line);
+      border-top: 1px solid var(--line);
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    tbody td{
+      padding: 4mm 3mm;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 10pt;
+    }
+
+    tbody tr:nth-child(even){
+      background: #fbfdff;
+    }
+
+    .note-box{
+      margin-top: 8mm;
+      padding: 4mm;
+      background: var(--gray-soft);
+      border-left: 5px solid var(--info);
+      border-radius: 8px;
+      font-size: 10pt;
+      color: var(--secondary);
+    }
+
+    footer{
+      margin-top: 12mm;
+      padding-top: 4mm;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 9pt;
+    }
+
+    footer .footer-left{
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    footer .footer-right{
+      font-style: italic;
+    }
+
+    .page-number{
+      position: absolute;
+      top: 8mm;
+      right: 15mm;
+      font-size: 9pt;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    @media print{
+      body{
+        background: white;
+      }
+      .page{
+        border:none;
+        margin:0;
+        width:100%;
+        border-radius: 0;
+        padding: 12mm;
+      }
+      .page-number{
+        position: fixed;
+        top: 8mm;
+        right: 12mm;
+      }
+      footer{
+        position: fixed;
+        bottom: 8mm;
+        left: 12mm;
+        right: 12mm;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <div class="page-number">Página 1 de 1</div>
+
+    <header class="header-report">
+      <div>
+        <span class="anexo-tag">DOCUMENTO TÉCNICO</span>
+        <h1>Modelo Predictivo de Riesgo de Incidentes</h1>
+        <h2>Hackathon PUCE - UNACEM | Equipo GEOINNOVA</h2>
+      </div>
+      <div style="text-align:right">
+        <div style="font-weight:900; color:var(--primary); font-size:12pt;">UNACEM - PUCE</div>
+        <div style="font-size:9pt; color:var(--muted); margin-top:1mm;">Documento Técnico del Modelo</div>
+        <div style="font-size:9pt; color:var(--muted);">Versión: 1.0 Final</div>
+      </div>
+    </header>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <b>Nombre del Modelo</b>
+        <span>GEOINNOVA - modelo_geoinnova_multitask.h5</span>
+      </div>
+
+      <div class="meta-item">
+        <b>Tipo de Modelo</b>
+        <span>Deep Learning (LSTM) - Multi-Salida</span>
+      </div>
+
+      <div class="meta-item">
+        <b>Objetivo</b>
+        <span>Predicción de riesgo total y distribución de incidentes por categorías</span>
+      </div>
+
+      <div class="meta-item">
+        <b>Equipo Responsable</b>
+        <span>GEOINNOVA</span>
+      </div>
+
+      <div class="meta-item">
+        <b>Responsable Técnico</b>
+        <span>Johnatan Guacho - Ricardo Carrion (Desarrollo Python / API / Web)</span>
+      </div>
+
+      <div class="meta-item">
+        <b>Colaboración Analítica</b>
+        <span>Equipo Geoinnova - Integrantes Carrera de Estadística (Limpieza y análisis de variables)</span>
+      </div>
+    </div>
+
+    <div class="section-title">1. Propósito y Alcance del Modelo</div>
+
+    <p style="margin-top:2mm;">
+      El modelo predictivo desarrollado tiene como finalidad estimar el comportamiento futuro del riesgo de incidentes
+      de seguridad industrial en función de registros históricos agregados temporalmente. Su objetivo principal es generar
+      predicciones trimestrales para apoyar la toma de decisiones mediante indicadores anticipados.
+    </p>
+
+    <p>
+      La solución se diseñó con enfoque modular, permitiendo su integración con un sistema de visualización (dashboard)
+      y con un servicio de consumo vía API.
+    </p>
+
+    <div class="section-title">2. Variables de Entrada (Features)</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30%">Variable</th>
+          <th style="width:25%">Tipo</th>
+          <th style="width:45%">Descripción Técnica</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Año</b></td>
+          <td>Numérica</td>
+          <td>Representa el año del periodo analizado. Es escalado para modelado.</td>
+        </tr>
+
+        <tr>
+          <td><b>Trimestre</b></td>
+          <td>Numérica</td>
+          <td>Representa el trimestre (1 a 4) correspondiente al periodo.</td>
+        </tr>
+
+        <tr>
+          <td><b>Total de Reportes</b></td>
+          <td>Numérica</td>
+          <td>Total de incidentes reportados en el trimestre. Se normaliza a rango 0-1.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">3. Variables Objetivo (Salidas del Modelo)</div>
+
+    <p style="margin-top:2mm;">
+      El modelo fue desarrollado bajo un enfoque multitarea (multi-output), generando múltiples predicciones simultáneas.
+      Cada salida corresponde a una distribución probabilística sobre categorías, excepto el riesgo total que se modela
+      como un valor continuo.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">Salida</th>
+          <th style="width:25%">Tipo de Predicción</th>
+          <th style="width:50%">Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>¿Qué?</b></td>
+          <td>Distribución (Softmax)</td>
+          <td>Predice la probabilidad de ocurrencia por tipo de incidente.</td>
+        </tr>
+
+        <tr>
+          <td><b>¿Quién?</b></td>
+          <td>Distribución (Softmax)</td>
+          <td>Predice la distribución de reportes según clasificación del personal.</td>
+        </tr>
+
+        <tr>
+          <td><b>¿Dónde?</b></td>
+          <td>Distribución (Softmax)</td>
+          <td>Predice la probabilidad de incidentes según sitio o ubicación operacional.</td>
+        </tr>
+
+        <tr>
+          <td><b>¿Cómo?</b></td>
+          <td>Distribución (Softmax)</td>
+          <td>Predice la probabilidad de incidentes por categoría de reporte o clasificación interna.</td>
+        </tr>
+
+        <tr>
+          <td><b>Riesgo Total</b></td>
+          <td>Continuo (Sigmoid)</td>
+          <td>Predicción de un score de riesgo en rango 0 a 1 para el periodo siguiente.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">4. Preparación y Normalización de Datos</div>
+
+    <p style="margin-top:2mm;">
+      Los datos fueron previamente depurados y agregados por trimestre. Posteriormente, se aplicaron transformaciones
+      numéricas necesarias para entrenamiento:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:35%">Proceso</th>
+          <th style="width:65%">Descripción Técnica</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Conversión temporal</b></td>
+          <td>
+            Se separó el campo <b>anio_trimestre</b> en dos variables numéricas: <b>anio</b> y <b>trimestre</b>.
+          </td>
+        </tr>
+
+        <tr>
+          <td><b>Escalamiento</b></td>
+          <td>
+            Se aplicó <b>MinMaxScaler</b> para normalizar el año, trimestre y total de reportes en rango 0 a 1.
+          </td>
+        </tr>
+
+        <tr>
+          <td><b>Conversión a proporciones</b></td>
+          <td>
+            Las variables categóricas agregadas (tipo, sitio, género y categoría) se transformaron a proporciones
+            respecto al total trimestral, para evitar dependencia directa del volumen.
+          </td>
+        </tr>
+
+        <tr>
+          <td><b>Persistencia de scalers</b></td>
+          <td>
+            Se almacenaron los escaladores generados en formato <b>.pkl</b> para reproducibilidad del pipeline.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">5. Construcción de Secuencias Temporales (Ventanas)</div>
+
+    <p style="margin-top:2mm;">
+      Para modelar dependencia temporal se construyeron secuencias tipo ventana deslizante.
+      Cada muestra de entrenamiento contiene un conjunto de periodos consecutivos que permiten al modelo aprender patrones
+      de comportamiento en el tiempo.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">Parámetro</th>
+          <th style="width:20%">Valor</th>
+          <th style="width:55%">Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Window Size</b></td>
+          <td>3</td>
+          <td>Cada predicción utiliza 3 trimestres anteriores como entrada.</td>
+        </tr>
+
+        <tr>
+          <td><b>Input Shape</b></td>
+          <td>(3, 3)</td>
+          <td>Secuencia de 3 pasos temporales con 3 variables por paso.</td>
+        </tr>
+
+        <tr>
+          <td><b>Output Shape</b></td>
+          <td>Multi-output</td>
+          <td>Se predicen simultáneamente distribuciones y score total de riesgo.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">6. Arquitectura del Modelo</div>
+
+    <p style="margin-top:2mm;">
+      Se implementó un modelo basado en redes neuronales recurrentes tipo LSTM, debido a su capacidad para aprender
+      patrones temporales en secuencias de datos históricos. La arquitectura fue definida como una red de entrada única
+      con múltiples cabezales de salida (multi-head).
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30%">Capa</th>
+          <th style="width:25%">Configuración</th>
+          <th style="width:45%">Función</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Input</b></td>
+          <td>(3,3)</td>
+          <td>Recibe secuencias temporales escaladas.</td>
+        </tr>
+
+        <tr>
+          <td><b>LSTM</b></td>
+          <td>32 unidades</td>
+          <td>Aprendizaje de patrones temporales en ventanas trimestrales.</td>
+        </tr>
+
+        <tr>
+          <td><b>Dense</b></td>
+          <td>32 neuronas ReLU</td>
+          <td>Transformación no lineal de representaciones internas.</td>
+        </tr>
+
+        <tr>
+          <td><b>Dropout</b></td>
+          <td>0.15</td>
+          <td>Reducción de sobreajuste en dataset de tamaño reducido.</td>
+        </tr>
+
+        <tr>
+          <td><b>Salidas Softmax</b></td>
+          <td>4 cabezales</td>
+          <td>Predicción de distribuciones probabilísticas por categoría.</td>
+        </tr>
+
+        <tr>
+          <td><b>Salida Sigmoid</b></td>
+          <td>1 neurona</td>
+          <td>Score continuo de riesgo total entre 0 y 1.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">7. Entrenamiento y Configuración</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30%">Parámetro</th>
+          <th style="width:20%">Valor</th>
+          <th style="width:50%">Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Optimizador</b></td>
+          <td>Adam</td>
+          <td>Learning rate configurado para estabilidad del entrenamiento.</td>
+        </tr>
+
+        <tr>
+          <td><b>Learning Rate</b></td>
+          <td>0.001</td>
+          <td>Valor estándar ajustado para convergencia gradual.</td>
+        </tr>
+
+        <tr>
+          <td><b>Función de Pérdida</b></td>
+          <td>MSE</td>
+          <td>Error cuadrático medio aplicado en todas las salidas del modelo.</td>
+        </tr>
+
+        <tr>
+          <td><b>Epochs</b></td>
+          <td>Hasta 300</td>
+          <td>Entrenamiento controlado por EarlyStopping.</td>
+        </tr>
+
+        <tr>
+          <td><b>Validación</b></td>
+          <td>33%</td>
+          <td>Split train/test aplicado con random_state fijo.</td>
+        </tr>
+
+        <tr>
+          <td><b>EarlyStopping</b></td>
+          <td>Patience 25</td>
+          <td>Se detiene el entrenamiento si la pérdida no mejora.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">8. Exportación y Persistencia del Modelo</div>
+
+    <p style="margin-top:2mm;">
+      Para permitir replicabilidad y despliegue, se generaron archivos persistentes del pipeline completo:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:35%">Archivo Generado</th>
+          <th style="width:65%">Descripción Técnica</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>modelo_geoinnova_multitask.h5</b></td>
+          <td>Modelo entrenado en formato HDF5 listo para despliegue.</td>
+        </tr>
+
+        <tr>
+          <td><b>X_seq.npy</b></td>
+          <td>Secuencias de entrada procesadas para pruebas y predicción.</td>
+        </tr>
+
+        <tr>
+          <td><b>y_*.npy</b></td>
+          <td>Targets del entrenamiento por cada salida multitarea.</td>
+        </tr>
+
+        <tr>
+          <td><b>scaler_time.pkl</b></td>
+          <td>Escalador MinMax para variables temporales (año y trimestre).</td>
+        </tr>
+
+        <tr>
+          <td><b>scaler_total.pkl</b></td>
+          <td>Escalador MinMax para variable Total_reportes.</td>
+        </tr>
+
+        <tr>
+          <td><b>label_map.json</b></td>
+          <td>Mapeo de etiquetas de salida para interpretación del modelo.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">9. Predicción e Interpretación</div>
+
+    <p style="margin-top:2mm;">
+      La predicción final del modelo genera un score de riesgo y un conjunto de probabilidades por categoría.
+      Para interpretación, se aplica un método de ranking Top-K que permite identificar las categorías más relevantes
+      del siguiente periodo estimado.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30%">Elemento</th>
+          <th style="width:70%">Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Riesgo Total</b></td>
+          <td>Score entre 0 y 1, utilizado como indicador de riesgo general trimestral.</td>
+        </tr>
+
+        <tr>
+          <td><b>Top-3 por Categoría</b></td>
+          <td>Ranking de las tres categorías con mayor probabilidad para ¿Qué?, ¿Quién?, ¿Dónde? y ¿Cómo?.</td>
+        </tr>
+
+        <tr>
+          <td><b>Semáforo de Riesgo</b></td>
+          <td>Clasificación interpretativa (Bajo, Medio, Alto) basada en rangos del score total.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      <b>Declaración de Confidencialidad:</b> Este documento describe únicamente el enfoque metodológico y técnico del modelo
+      predictivo. Los datos originales utilizados para entrenamiento y validación son información confidencial y no se incluyen
+      en este anexo debido a restricciones institucionales y acuerdos de privacidad establecidos durante el Hackathon.
+    </div>
+
+    <footer>
+      <div class="footer-left">dev_johnatan - ghost 2026 | in collaboration with GEOINNOVA</div>
+      <div class="footer-right">Hackathon PUCE - UNACEM | Modelo Predictivo</div>
+    </footer>
+
+  </main>
+</body>
+</html>

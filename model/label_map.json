@@ -1,0 +1,31 @@
+{
+  "que": [
+    "tipo__Evento serio sin lesion",
+    "tipo__Evento serio sin lesion en carretera",
+    "tipo__Incidente con atencion medica",
+    "tipo__Incidente con atencion primeros auxilios",
+    "tipo__Incidente con perdida de tiempo",
+    "tipo__Fatalidad"
+  ],
+  "quien": [
+    "genero__Masculino",
+    "genero__Femenino"
+  ],
+  "donde": [
+    "sitio__Carretera",
+    "sitio__Planta",
+    "sitio__Canteras",
+    "sitio__Otros",
+    "sitio__Plantas"
+  ],
+  "como": [
+    "cat__Caídas de Personas u Objetos",
+    "cat__Incidentes Vehiculares",
+    "cat__Otros",
+    "cat__Aplastamientos y Lesiones en Extremidades",
+    "cat__Daños Materiales",
+    "cat__Golpes y Proyecciones",
+    "cat__Incidentes con Contratistas o Trabajadores",
+    "cat__Lesiones Oculares o Proyecciones en Ojos"
+  ]
+}

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEOINNOVA | Dashboard de Incidencias</title>
+
+  <!-- Tipografía -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./templates/css/dashboard.css" />
+</head>
+
+<body class="theme--light">
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="topbar__left">
+      <div class="brand">
+        <span class="brand__dot"></span>
+        <span class="brand__name">GEOINNOVA</span>
+      </div>
+
+      <div class="page-title">
+        <h1>Dashboard</h1>
+        <p class="muted">Incidencias y seguridad operacional (2023–2025)</p>
+      </div>
+    </div>
+
+    <div class="topbar__right">
+      <div class="chip">
+        <span class="chip__label">Filtro:</span>
+        <span class="chip__value" id="chipFiltro">Todos</span>
+      </div>
+
+      <button class="btn btn--ghost" id="btnTheme" type="button" aria-label="Cambiar tema">
+        <span class="icon" aria-hidden="true"></span>
+        <span class="btn__text">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Filters Bar (Horizontal, debajo del nav) -->
+  <section class="filtersbar">
+    <div class="filtersbar__inner">
+      <div class="filtersbar__group">
+
+        <div class="field field--inline">
+          <label for="selectYear">Seleccione el año</label>
+          <select id="selectYear" class="select">
+            <option value="Global">Todos</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+          </select>
+          <small class="hint">“Todos” muestra la serie completa.</small>
+        </div>
+
+        <div class="info info--compact">
+          <h3>Información</h3>
+          
+
+          <div class="legend legend--compact">
+            <h3>Leyenda KPI</h3>
+            <div class="legend__items legend__items--row">
+                <div class="legend__item"><span class="dot dot--red"></span><span>Mejorable</span></div>
+                <div class="legend__item"><span class="dot dot--yellow"></span><span>Adecuado</span></div>
+                <div class="legend__item"><span class="dot dot--green"></span><span>Óptimo</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filtersbar__meta">
+    
+      </div>
+    </div>
+  </section>
+
+  <!-- Layout principal (sin sidebar) -->
+  <main class="layout layout--full">
+    <section class="content content--full">
+
+      <!-- ====== ROW A: Top3 | Donuts ====== -->
+      <div class="grid grid--two">
+
+        <!-- Dashboard #1: Top 3 estándares (SOLO cuadro, SIN tabla) -->
+        <section class="card" id="cardTop3">
+          <header class="card__header">
+            <div>
+              <h2>Top 3 estándares por periodo</h2>
+              <p class="muted">Según total de registros y KPI de excelencia</p>
+            </div>
+            <div class="pill" id="pillPeriodTop3">Periodo: Global</div>
+          </header>
+
+          <div class="card__body">
+            <!-- JS pinta las 3 tarjetas semáforo -->
+            <div class="semaforo semaforo--only" id="semaforoTop3" aria-live="polite"></div>
+
+          </div>
+        </section>
+
+        <!-- Dashboard #2: Donuts por tipo de empleado -->
+        <section class="card" id="cardDonuts">
+          <header class="card__header">
+            <div>
+              <h2>Tipos de incidente por tipo de empleado</h2>
+              <p class="muted">Comparación: Empleado vs Contratista</p>
+            </div>
+            <div class="pill" id="pillPeriodDonuts">Periodo: Todos</div>
+          </header>
+
+          <div class="card__body">
+            <div class="donuts">
+              <div class="donut-card">
+                <div class="donut-card__head">
+                  <h3>Empleado</h3>
+                  <span class="muted" id="totalEmpleado">Total: —</span>
+                </div>
+                <div class="canvas-wrap">
+                  <canvas id="chartEmpleado" height="220"></canvas>
+                </div>
+                <div class="mini-legend" id="legendEmpleado"></div>
+              </div>
+
+              <div class="donut-card">
+                <div class="donut-card__head">
+                  <h3>Contratista</h3>
+                  <span class="muted" id="totalContratista">Total: —</span>
+                </div>
+                <div class="canvas-wrap">
+                  <canvas id="chartContratista" height="220"></canvas>
+                </div>
+                <div class="mini-legend" id="legendContratista"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ====== ROW B: Serie | Placeholder ====== -->
+      <div class="grid grid--two">
+
+        <!-- Dashboard #3: Serie de tiempo trimestral -->
+        <section class="card" id="cardSerieNegocios">
+          <header class="card__header">
+            <div>
+              <h2>Serie de tiempo trimestral</h2>
+              <p class="muted">Incidencias por tipo de negocio</p>
+            </div>
+            <div class="pill" id="pillPeriodSerie">Periodo: Todos</div>
+          </header>
+
+          <div class="card__body">
+            <div class="canvas-wrap canvas-wrap--tall">
+              <canvas id="chartSerieNegocios" height="320"></canvas>
+            </div>
+
+            <div class="footer-stats">
+              <div class="stat">
+                <span class="stat__label muted">Total Canteras</span>
+                <span class="stat__value" id="totCanteras">—</span>
+              </div>
+              <div class="stat">
+                <span class="stat__label muted">Total Cemento</span>
+                <span class="stat__value" id="totCemento">—</span>
+              </div>
+              <div class="stat">
+                <span class="stat__label muted">Total Hormigón</span>
+                <span class="stat__value" id="totHormigon">—</span>
+              </div>
+              <div class="stat">
+                <span class="stat__label muted">Total general</span>
+                <span class="stat__value" id="totGeneralNegocios">—</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Placeholder: Incidentes trimestrales (4 tipos) -->
+        <section class="card" id="moduleIncidentesTrimestrales">
+            <header class="card__header">
+                <div>
+                <h2>Incidentes trimestrales</h2>
+                <p class="muted">Evolución por tipo de incidente (4 tipos)</p>
+                </div>
+                <div class="pill" id="pillPeriodIncidentes">Periodo: Todos</div>
+            </header>
+
+            <div class="card__body">
+                <div class="canvas-wrap canvas-wrap--tall">
+                <canvas id="chartIncidentesTrimestrales" height="320"></canvas>
+                </div>
+
+                <!-- (opcional) Totales rápidos -->
+                <div class="footer-stats mt-md" id="statsIncidentes">
+                <div class="stat">
+                    <span class="stat__label muted">Total (periodo)</span>
+                    <span class="stat__value" id="totIncidentesPeriodo">—</span>
+                </div>
+                <div class="stat">
+                    <span class="stat__label muted">Acc. c/ pérdida</span>
+                    <span class="stat__value" id="totAccPerdida">—</span>
+                </div>
+                <div class="stat">
+                    <span class="stat__label muted">Atención médica</span>
+                    <span class="stat__value" id="totAtencionMedica">—</span>
+                </div>
+                <div class="stat">
+                    <span class="stat__label muted">Evento serio</span>
+                    <span class="stat__value" id="totEventoSerio">—</span>
+                </div>
+                </div>
+            </div>
+        </section>
+
+
+      </div>
+
+      <!-- ====== ROW C: Capacitaciones (solo 2025) ====== -->
+      <div class="grid grid--one">
+        <section class="card card--placeholder" id="moduleCapacitaciones2025" data-visible-only-year="2025">
+          <header class="card__header">
+            <div>
+              <h2>Capacitaciones trimestrales (solo 2025)</h2>
+              <p class="muted">Módulo pendiente (6 tipos de capacitaciones)</p>
+            </div>
+            <div class="pill">Solo 2025</div>
+          </header>
+          <div class="card__body">
+            <div class="placeholder">
+              <p class="muted">Este módulo se mostrará únicamente cuando el filtro sea 2025.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ====== ROW D: Modelo predictivo ====== -->
+      <div class="grid grid--one">
+        <section class="card card--placeholder" id="moduleModeloPredictivo">
+          <header class="card__header">
+            <div>
+              <h2>Modelo predictivo</h2>
+              <p class="muted">Módulo pendiente (predicción / scoring)</p>
+            </div>
+            <div class="pill">Conectado</div>
+          </header>
+          <div class="card__body">
+            <div class="pred-grid">
+              
+              <!-- Columna izquierda: riesgo -->
+              <div class="pred-main">
+                <div class="pred-badge" id="predBadge">
+                  <span class="dot dot--yellow" id="predDot"></span>
+                  <span id="predNivel">—</span>
+                </div>
+
+                <div class="pred-score">
+                  <span class="muted">Riesgo estimado</span>
+                  <div class="pred-value" id="predScore">—</div>
+                </div>
+
+                <button class="btn" id="btnPredict" type="button">
+                  Actualizar predicción
+                </button>
+
+                <p class="hint">
+                  Predicción basada en el histórico trimestral (demo).
+                </p>
+              </div>
+
+              <!-- Columna derecha: top-3 -->
+              <div class="pred-top">
+                <div class="pred-box">
+                  <h4>¿Qué?</h4>
+                  <ul id="predQue"></ul>
+                </div>
+
+                <div class="pred-box">
+                  <h4>¿Quién?</h4>
+                  <ul id="predQuien"></ul>
+                </div>
+
+                <div class="pred-box">
+                  <h4>¿Dónde?</h4>
+                  <ul id="predDonde"></ul>
+                </div>
+
+                <div class="pred-box">
+                  <h4>¿Cómo?</h4>
+                  <ul id="predComo"></ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+      </div>
+
+      <footer class="footer">
+        <span class="muted">GEOINNOVA - 2023–2025</span>
+      </footer>
+
+    </section>
+  </main>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- JS -->
+  <script src="./templates/js/dashboard.js"></script>
+</body>
+</html>

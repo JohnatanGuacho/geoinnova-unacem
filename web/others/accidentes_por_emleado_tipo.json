@@ -1,0 +1,38 @@
+  {
+    "metadata": {
+      "dimension_filtro": "tipo_empleado",
+      "dimension_columnas": "tipo_incidente",
+      "tipos_incidente": [
+        "Accidente con perdida de Tiempo",
+        "Atención médica sin pérdida de tiempo",
+        "Evento serio sin lesión",
+        "Primeros Auxilios"
+      ],
+      "tipos_empleado": ["Contratista", "Empleado"]
+    },
+    "data": [
+      {
+        "tipo_empleado": "Contratista",
+        "Accidente con perdida de Tiempo": 8,
+        "Atención médica sin pérdida de tiempo": 12,
+        "Evento serio sin lesión": 69,
+        "Primeros Auxilios": 10,
+        "total": 99
+      },
+      {
+        "tipo_empleado": "Empleado",
+        "Accidente con perdida de Tiempo": 9,
+        "Atención médica sin pérdida de tiempo": 19,
+        "Evento serio sin lesión": 43,
+        "Primeros Auxilios": 13,
+        "total": 84
+      }
+    ],
+    "totales": {
+      "Accidente con perdida de Tiempo": 17,
+      "Atención médica sin pérdida de tiempo": 31,
+      "Evento serio sin lesión": 112,
+      "Primeros Auxilios": 23,
+      "total_general": 183
+    }
+  }

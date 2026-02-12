@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "dimension_filtro": "tipo_empleado",
+    "dimension_columnas": "tipo_incidente",
+    "tipos_incidente": [
+      "Accidente con perdida de Tiempo",
+      "Atención médica sin pérdida de tiempo",
+      "Evento serio sin lesión",
+      "Primeros Auxilios"
+    ],
+    "tipos_empleado": [
+      "Contratista",
+      "Empleado"
+    ],
+    "periodos": [
+      "Todos",
+      "2023",
+      "2024",
+      "2025"
+    ]
+  },
+  "data": {
+    "2023": [
+      {
+        "tipo_empleado": "Contratista",
+        "Accidente con perdida de Tiempo": 3,
+        "Atención médica sin pérdida de tiempo": 7,
+        "Evento serio sin lesión": 21,
+        "Primeros Auxilios": 5,
+        "total": 36
+      },
+      {
+        "tipo_empleado": "Empleado",
+        "Accidente con perdida de Tiempo": 1,
+        "Atención médica sin pérdida de tiempo": 1,
+        "Evento serio sin lesión": 13,
+        "Primeros Auxilios": 3,
+        "total": 18
+      }
+    ],
+    "2024": [
+      {
+        "tipo_empleado": "Contratista",
+        "Accidente con perdida de Tiempo": 1,
+        "Atención médica sin pérdida de tiempo": 3,
+        "Evento serio sin lesión": 16,
+        "Primeros Auxilios": 0,
+        "total": 20
+      },
+      {
+        "tipo_empleado": "Empleado",
+        "Accidente con perdida de Tiempo": 4,
+        "Atención médica sin pérdida de tiempo": 8,
+        "Evento serio sin lesión": 10,
+        "Primeros Auxilios": 7,
+        "total": 29
+      }
+    ],
+    "2025": [
+      {
+        "tipo_empleado": "Contratista",
+        "Accidente con perdida de Tiempo": 4,
+        "Atención médica sin pérdida de tiempo": 2,
+        "Evento serio sin lesión": 32,
+        "Primeros Auxilios": 5,
+        "total": 43
+      },
+      {
+        "tipo_empleado": "Empleado",
+        "Accidente con perdida de Tiempo": 4,
+        "Atención médica sin pérdida de tiempo": 10,
+        "Evento serio sin lesión": 20,
+        "Primeros Auxilios": 3,
+        "total": 37
+      }
+    ],
+    "Todos": [
+      {
+        "tipo_empleado": "Contratista",
+        "Accidente con perdida de Tiempo": 8,
+        "Atención médica sin pérdida de tiempo": 12,
+        "Evento serio sin lesión": 69,
+        "Primeros Auxilios": 10,
+        "total": 99
+      },
+      {
+        "tipo_empleado": "Empleado",
+        "Accidente con perdida de Tiempo": 9,
+        "Atención médica sin pérdida de tiempo": 19,
+        "Evento serio sin lesión": 43,
+        "Primeros Auxilios": 13,
+        "total": 84
+      }
+    ]
+  },
+  "totales": {
+    "2023": {
+      "Accidente con perdida de Tiempo": 4,
+      "Atención médica sin pérdida de tiempo": 8,
+      "Evento serio sin lesión": 34,
+      "Primeros Auxilios": 8,
+      "total_general": 54
+    },
+    "2024": {
+      "Accidente con perdida de Tiempo": 5,
+      "Atención médica sin pérdida de tiempo": 11,
+      "Evento serio sin lesión": 26,
+      "Primeros Auxilios": 7,
+      "total_general": 49
+    },
+    "2025": {
+      "Accidente con perdida de Tiempo": 8,
+      "Atención médica sin pérdida de tiempo": 12,
+      "Evento serio sin lesión": 52,
+      "Primeros Auxilios": 8,
+      "total_general": 80
+    },
+    "Todos": {
+      "Accidente con perdida de Tiempo": 17,
+      "Atención médica sin pérdida de tiempo": 31,
+      "Evento serio sin lesión": 112,
+      "Primeros Auxilios": 23,
+      "total_general": 183
+    }
+  }
+}

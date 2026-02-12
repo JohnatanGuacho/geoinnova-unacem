@@ -1,0 +1,250 @@
+{
+  "metadata": {
+    "titulo": "Incidencias trimestrales por tipo de incidente",
+    "tipos_incidente": [
+      "Accidente con perdida de Tiempo",
+      "Atención médica sin pérdida de tiempo",
+      "Evento serio sin lesión",
+      "Primeros Auxilios"
+    ],
+    "periodos_disponibles": ["Todos", "2023", "2024", "2025"],
+    "total_general": 183
+  },
+  "data": {
+    "Todos": [
+      {
+        "periodo": "2023-T1",
+        "Accidente con perdida de Tiempo": 0,
+        "Atención médica sin pérdida de tiempo": 2,
+        "Evento serio sin lesión": 11,
+        "Primeros Auxilios": 1,
+        "total": 14
+      },
+      {
+        "periodo": "2023-T2",
+        "Accidente con perdida de Tiempo": 4,
+        "Atención médica sin pérdida de tiempo": 2,
+        "Evento serio sin lesión": 7,
+        "Primeros Auxilios": 3,
+        "total": 16
+      },
+      {
+        "periodo": "2023-T3",
+        "Accidente con perdida de Tiempo": 0,
+        "Atención médica sin pérdida de tiempo": 3,
+        "Evento serio sin lesión": 10,
+        "Primeros Auxilios": 3,
+        "total": 16
+      },
+      {
+        "periodo": "2023-T4",
+        "Accidente con perdida de Tiempo": 0,
+        "Atención médica sin pérdida de tiempo": 1,
+        "Evento serio sin lesión": 6,
+        "Primeros Auxilios": 1,
+        "total": 8
+      },
+
+      {
+        "periodo": "2024-T1",
+        "Accidente con perdida de Tiempo": 1,
+        "Atención médica sin pérdida de tiempo": 7,
+        "Evento serio sin lesión": 4,
+        "Primeros Auxilios": 3,
+        "total": 15
+      },
+      {
+        "periodo": "2024-T2",
+        "Accidente con perdida de Tiempo": 1,
+        "Atención médica sin pérdida de tiempo": 1,
+        "Evento serio sin lesión": 7,
+        "Primeros Auxilios": 4,
+        "total": 13
+      },
+      {
+        "periodo": "2024-T3",
+        "Accidente con perdida de Tiempo": 2,
+        "Atención médica sin pérdida de tiempo": 1,
+        "Evento serio sin lesión": 5,
+        "Primeros Auxilios": 0,
+        "total": 8
+      },
+      {
+        "periodo": "2024-T4",
+        "Accidente con perdida de Tiempo": 1,
+        "Atención médica sin pérdida de tiempo": 2,
+        "Evento serio sin lesión": 10,
+        "Primeros Auxilios": 0,
+        "total": 13
+      },
+
+      {
+        "periodo": "2025-T1",
+        "Accidente con perdida de Tiempo": 1,
+        "Atención médica sin pérdida de tiempo": 4,
+        "Evento serio sin lesión": 17,
+        "Primeros Auxilios": 1,
+        "total": 23
+      },
+      {
+        "periodo": "2025-T2",
+        "Accidente con perdida de Tiempo": 5,
+        "Atención médica sin pérdida de tiempo": 5,
+        "Evento serio sin lesión": 12,
+        "Primeros Auxilios": 2,
+        "total": 24
+      },
+      {
+        "periodo": "2025-T3",
+        "Accidente con perdida de Tiempo": 2,
+        "Atención médica sin pérdida de tiempo": 2,
+        "Evento serio sin lesión": 8,
+        "Primeros Auxilios": 3,
+        "total": 15
+      },
+      {
+        "periodo": "2025-T4",
+        "Accidente con perdida de Tiempo": 0,
+        "Atención médica sin pérdida de tiempo": 1,
+        "Evento serio sin lesión": 15,
+        "Primeros Auxilios": 2,
+        "total": 18
+      }
+    ],
+
+    "2023": [
+      {
+        "periodo": "T1",
+        "Accidente con perdida de Tiempo": 0,
+        "Atención médica sin pérdida de tiempo": 2,
+        "Evento serio sin lesión": 11,
+        "Primeros Auxilios": 1,
+        "total": 14
+      },
+      {
+        "periodo": "T2",
+        "Accidente con perdida de Tiempo": 4,
+        "Atención médica sin pérdida de tiempo": 2,
+        "Evento serio sin lesión": 7,
+        "Primeros Auxilios": 3,
+        "total": 16
+      },
+      {
+        "periodo": "T3",
+        "Accidente con perdida de Tiempo": 0,
+        "Atención médica sin pérdida de tiempo": 3,
+        "Evento serio sin lesión": 10,
+        "Primeros Auxilios": 3,
+        "total": 16
+      },
+      {
+        "periodo": "T4",
+        "Accidente con perdida de Tiempo": 0,
+        "Atención médica sin pérdida de tiempo": 1,
+        "Evento serio sin lesión": 6,
+        "Primeros Auxilios": 1,
+        "total": 8
+      }
+    ],
+
+    "2024": [
+      {
+        "periodo": "T1",
+        "Accidente con perdida de Tiempo": 1,
+        "Atención médica sin pérdida de tiempo": 7,
+        "Evento serio sin lesión": 4,
+        "Primeros Auxilios": 3,
+        "total": 15
+      },
+      {
+        "periodo": "T2",
+        "Accidente con perdida de Tiempo": 1,
+        "Atención médica sin pérdida de tiempo": 1,
+        "Evento serio sin lesión": 7,
+        "Primeros Auxilios": 4,
+        "total": 13
+      },
+      {
+        "periodo": "T3",
+        "Accidente con perdida de Tiempo": 2,
+        "Atención médica sin pérdida de tiempo": 1,
+        "Evento serio sin lesión": 5,
+        "Primeros Auxilios": 0,
+        "total": 8
+      },
+      {
+        "periodo": "T4",
+        "Accidente con perdida de Tiempo": 1,
+        "Atención médica sin pérdida de tiempo": 2,
+        "Evento serio sin lesión": 10,
+        "Primeros Auxilios": 0,
+        "total": 13
+      }
+    ],
+
+    "2025": [
+      {
+        "periodo": "T1",
+        "Accidente con perdida de Tiempo": 1,
+        "Atención médica sin pérdida de tiempo": 4,
+        "Evento serio sin lesión": 17,
+        "Primeros Auxilios": 1,
+        "total": 23
+      },
+      {
+        "periodo": "T2",
+        "Accidente con perdida de Tiempo": 5,
+        "Atención médica sin pérdida de tiempo": 5,
+        "Evento serio sin lesión": 12,
+        "Primeros Auxilios": 2,
+        "total": 24
+      },
+      {
+        "periodo": "T3",
+        "Accidente con perdida de Tiempo": 2,
+        "Atención médica sin pérdida de tiempo": 2,
+        "Evento serio sin lesión": 8,
+        "Primeros Auxilios": 3,
+        "total": 15
+      },
+      {
+        "periodo": "T4",
+        "Accidente con perdida de Tiempo": 0,
+        "Atención médica sin pérdida de tiempo": 1,
+        "Evento serio sin lesión": 15,
+        "Primeros Auxilios": 2,
+        "total": 18
+      }
+    ]
+  },
+  "totales": {
+    "Todos": {
+      "Accidente con perdida de Tiempo": 17,
+      "Atención médica sin pérdida de tiempo": 31,
+      "Evento serio sin lesión": 112,
+      "Primeros Auxilios": 23,
+      "total_general": 183
+    },
+    "2023": {
+      "Accidente con perdida de Tiempo": 4,
+      "Atención médica sin pérdida de tiempo": 8,
+      "Evento serio sin lesión": 34,
+      "Primeros Auxilios": 8,
+      "total_general": 54
+    },
+    "2024": {
+      "Accidente con perdida de Tiempo": 5,
+      "Atención médica sin pérdida de tiempo": 11,
+      "Evento serio sin lesión": 26,
+      "Primeros Auxilios": 7,
+      "total_general": 49
+    },
+    "2025": {
+      "Accidente con perdida de Tiempo": 8,
+      "Atención médica sin pérdida de tiempo": 12,
+      "Evento serio sin lesión": 52,
+      "Primeros Auxilios": 8,
+      "total_general": 80
+    }
+  }
+}

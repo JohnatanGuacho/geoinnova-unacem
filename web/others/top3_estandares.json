@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "filtros_periodo": ["Global", "2023", "2024", "2025"],
+    "semaforo_por_clasificacion": {
+      "Mejorable": { "color": "rojo", "hex": "#EF4444" },
+      "Adecuado": { "color": "amarillo", "hex": "#F59E0B" },
+      "Óptimo": { "color": "verde", "hex": "#22C55E" }
+    }
+  },
+  "data": {
+    "2023": [
+      {
+        "rank": 1,
+        "estandar": "Procedimiento de aislamiento de energía",
+        "total_registros": 516,
+        "distribucion_estandar": 39.33,
+        "kpi_excelencia": 74.61,
+        "clasificacion_kpi": "Adecuado"
+      },
+      {
+        "rank": 2,
+        "estandar": "Procedimiento de trabajos en alturas",
+        "total_registros": 427,
+        "distribucion_estandar": 32.55,
+        "kpi_excelencia": 68.15,
+        "clasificacion_kpi": "Mejorable"
+      },
+      {
+        "rank": 3,
+        "estandar": "Procedimiento de equipos móviles",
+        "total_registros": 154,
+        "distribucion_estandar": 11.74,
+        "kpi_excelencia": 48.7,
+        "clasificacion_kpi": "Mejorable"
+      }
+    ],
+    "2024": [
+      {
+        "rank": 1,
+        "estandar": "Procedimiento de aislamiento de energía",
+        "total_registros": 612,
+        "distribucion_estandar": 37.2,
+        "kpi_excelencia": 79.08,
+        "clasificacion_kpi": "Adecuado"
+      },
+      {
+        "rank": 2,
+        "estandar": "Procedimiento de trabajos en alturas",
+        "total_registros": 435,
+        "distribucion_estandar": 26.44,
+        "kpi_excelencia": 74.25,
+        "clasificacion_kpi": "Adecuado"
+      },
+      {
+        "rank": 3,
+        "estandar": "Seguridad en obras",
+        "total_registros": 233,
+        "distribucion_estandar": 14.16,
+        "kpi_excelencia": 100.0,
+        "clasificacion_kpi": "Óptimo"
+      }
+    ],
+    "2025": [
+      {
+        "rank": 1,
+        "estandar": "Procedimiento de aislamiento de energía",
+        "total_registros": 379,
+        "distribucion_estandar": 30.52,
+        "kpi_excelencia": 76.78,
+        "clasificacion_kpi": "Adecuado"
+      },
+      {
+        "rank": 2,
+        "estandar": "Seguridad en obras",
+        "total_registros": 311,
+        "distribucion_estandar": 25.04,
+        "kpi_excelencia": 88.1,
+        "clasificacion_kpi": "Adecuado"
+      },
+      {
+        "rank": 3,
+        "estandar": "Procedimiento de trabajos en alturas",
+        "total_registros": 298,
+        "distribucion_estandar": 23.99,
+        "kpi_excelencia": 62.75,
+        "clasificacion_kpi": "Mejorable"
+      }
+    ],
+    "Global": [
+      {
+        "rank": 1,
+        "estandar": "Procedimiento de aislamiento de energía",
+        "total_registros": 1507,
+        "distribucion_estandar": 35.89,
+        "kpi_excelencia": 76.97,
+        "clasificacion_kpi": "Adecuado"
+      },
+      {
+        "rank": 2,
+        "estandar": "Procedimiento de trabajos en alturas",
+        "total_registros": 1160,
+        "distribucion_estandar": 27.63,
+        "kpi_excelencia": 69.05,
+        "clasificacion_kpi": "Mejorable"
+      },
+      {
+        "rank": 3,
+        "estandar": "Seguridad en obras",
+        "total_registros": 544,
+        "distribucion_estandar": 12.96,
+        "kpi_excelencia": 93.2,
+        "clasificacion_kpi": "Óptimo"
+      }
+    ]
+  }
+}

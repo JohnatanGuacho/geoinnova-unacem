@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "filtros_anio": ["Todos", "2023", "2024", "2025"],
+    "dimension_serie": "tipo_negocio",
+    "tipos_negocio": ["Canteras", "Cemento", "Hormigón"],
+    "dimension_tiempo": "trimestre",
+    "trimestres": ["T1", "T2", "T3", "T4"]
+  },
+  "data": {
+    "Todos": [
+      { "periodo": "2023-T1", "anio": 2023, "trimestre": "T1", "Canteras": 1, "Cemento": 12, "Hormigón": 1 },
+      { "periodo": "2023-T2", "anio": 2023, "trimestre": "T2", "Canteras": 0, "Cemento": 13, "Hormigón": 3 },
+      { "periodo": "2023-T3", "anio": 2023, "trimestre": "T3", "Canteras": 0, "Cemento": 13, "Hormigón": 3 },
+      { "periodo": "2023-T4", "anio": 2023, "trimestre": "T4", "Canteras": 1, "Cemento": 3, "Hormigón": 4 },
+
+      { "periodo": "2024-T1", "anio": 2024, "trimestre": "T1", "Canteras": 1, "Cemento": 9, "Hormigón": 5 },
+      { "periodo": "2024-T2", "anio": 2024, "trimestre": "T2", "Canteras": 1, "Cemento": 8, "Hormigón": 4 },
+      { "periodo": "2024-T3", "anio": 2024, "trimestre": "T3", "Canteras": 2, "Cemento": 5, "Hormigón": 1 },
+      { "periodo": "2024-T4", "anio": 2024, "trimestre": "T4", "Canteras": 2, "Cemento": 9, "Hormigón": 2 },
+
+      { "periodo": "2025-T1", "anio": 2025, "trimestre": "T1", "Canteras": 3, "Cemento": 11, "Hormigón": 9 },
+      { "periodo": "2025-T2", "anio": 2025, "trimestre": "T2", "Canteras": 0, "Cemento": 15, "Hormigón": 9 },
+      { "periodo": "2025-T3", "anio": 2025, "trimestre": "T3", "Canteras": 1, "Cemento": 11, "Hormigón": 3 },
+      { "periodo": "2025-T4", "anio": 2025, "trimestre": "T4", "Canteras": 1, "Cemento": 12, "Hormigón": 5 }
+    ],
+    "2023": [
+      { "periodo": "2023-T1", "anio": 2023, "trimestre": "T1", "Canteras": 1, "Cemento": 12, "Hormigón": 1 },
+      { "periodo": "2023-T2", "anio": 2023, "trimestre": "T2", "Canteras": 0, "Cemento": 13, "Hormigón": 3 },
+      { "periodo": "2023-T3", "anio": 2023, "trimestre": "T3", "Canteras": 0, "Cemento": 13, "Hormigón": 3 },
+      { "periodo": "2023-T4", "anio": 2023, "trimestre": "T4", "Canteras": 1, "Cemento": 3, "Hormigón": 4 }
+    ],
+    "2024": [
+      { "periodo": "2024-T1", "anio": 2024, "trimestre": "T1", "Canteras": 1, "Cemento": 9, "Hormigón": 5 },
+      { "periodo": "2024-T2", "anio": 2024, "trimestre": "T2", "Canteras": 1, "Cemento": 8, "Hormigón": 4 },
+      { "periodo": "2024-T3", "anio": 2024, "trimestre": "T3", "Canteras": 2, "Cemento": 5, "Hormigón": 1 },
+      { "periodo": "2024-T4", "anio": 2024, "trimestre": "T4", "Canteras": 2, "Cemento": 9, "Hormigón": 2 }
+    ],
+    "2025": [
+      { "periodo": "2025-T1", "anio": 2025, "trimestre": "T1", "Canteras": 3, "Cemento": 11, "Hormigón": 9 },
+      { "periodo": "2025-T2", "anio": 2025, "trimestre": "T2", "Canteras": 0, "Cemento": 15, "Hormigón": 9 },
+      { "periodo": "2025-T3", "anio": 2025, "trimestre": "T3", "Canteras": 1, "Cemento": 11, "Hormigón": 3 },
+      { "periodo": "2025-T4", "anio": 2025, "trimestre": "T4", "Canteras": 1, "Cemento": 12, "Hormigón": 5 }
+    ]
+  },
+  "totales": {
+    "Todos": { "Canteras": 13, "Cemento": 122, "Hormigón": 48, "total_general": 183 },
+    "2023": { "Canteras": 2, "Cemento": 41, "Hormigón": 11, "total_general": 54 },
+    "2024": { "Canteras": 6, "Cemento": 31, "Hormigón": 12, "total_general": 49 },
+    "2025": { "Canteras": 5, "Cemento": 52, "Hormigón": 26, "total_general": 83 }
+  }
+}

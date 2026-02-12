@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Documento Técnico - Plataforma Web, Dashboard e Integración con Modelo (UNACEM)</title>
+
+  <style>
+    :root{
+      --primary: #1a365d;
+      --secondary: #2d3748;
+      --success: #2f855a;
+      --warning: #c05621;
+      --danger: #9b2c2c;
+      --info: #2b6cb0;
+      --text: #1a202c;
+      --muted: #718096;
+      --line: #e2e8f0;
+      --bg: #ffffff;
+      --table-header: #f8fafc;
+      --gray-soft: #f1f5f9;
+      --gray-soft-2: #f7fafc;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11pt;
+      line-height: 1.45;
+    }
+
+    .page{
+      max-width: 210mm;
+      margin: 10mm auto;
+      padding: 15mm;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .header-report{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 5mm;
+      margin-bottom: 8mm;
+      gap: 10mm;
+    }
+
+    .header-report h1{
+      margin: 2mm 0 0 0;
+      font-size: 17pt;
+      color: var(--primary);
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .header-report h2{
+      margin: 1mm 0 0 0;
+      font-size: 11pt;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    .doc-tag{
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 1.2mm 4mm;
+      font-weight: bold;
+      font-size: 9.5pt;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .meta-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4mm;
+      margin-bottom: 8mm;
+      background: var(--table-header);
+      padding: 5mm;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+    }
+
+    .meta-item{
+      padding: 2mm;
+    }
+
+    .meta-item b{
+      color: var(--primary);
+      font-size: 9pt;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1mm;
+      letter-spacing: 0.3px;
+    }
+
+    .meta-item span{
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    .section-title{
+      margin: 8mm 0 3mm 0;
+      padding: 2mm 0;
+      font-size: 12pt;
+      font-weight: 800;
+      color: var(--primary);
+      border-left: 5px solid var(--primary);
+      padding-left: 3mm;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .subsection-title{
+      margin: 5mm 0 2mm 0;
+      font-size: 11pt;
+      font-weight: 800;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .paragraph{
+      margin: 0 0 3mm 0;
+      color: var(--text);
+    }
+
+    .paragraph strong{
+      color: var(--secondary);
+    }
+
+    .note-box{
+      margin-top: 5mm;
+      padding: 4mm;
+      background: var(--gray-soft);
+      border-left: 5px solid var(--info);
+      border-radius: 8px;
+      font-size: 10pt;
+      color: var(--secondary);
+    }
+
+    .note-box b{
+      color: var(--primary);
+    }
+
+    .warn-box{
+      margin-top: 5mm;
+      padding: 4mm;
+      background: #fffaf0;
+      border-left: 5px solid var(--warning);
+      border-radius: 8px;
+      font-size: 10pt;
+      color: #7b341e;
+    }
+
+    .success-box{
+      margin-top: 5mm;
+      padding: 4mm;
+      background: #f0fff4;
+      border-left: 5px solid var(--success);
+      border-radius: 8px;
+      font-size: 10pt;
+      color: #22543d;
+    }
+
+    ul{
+      margin: 2mm 0 4mm 7mm;
+      padding: 0;
+      color: var(--secondary);
+    }
+
+    ul li{
+      margin-bottom: 2mm;
+    }
+
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2mm;
+    }
+
+    thead th{
+      background: var(--table-header);
+      text-align: left;
+      padding: 4mm 3mm;
+      font-size: 9pt;
+      border-bottom: 2px solid var(--line);
+      border-top: 1px solid var(--line);
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    tbody td{
+      padding: 4mm 3mm;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 10pt;
+    }
+
+    tbody tr:nth-child(even){
+      background: #fbfdff;
+    }
+
+    .badge{
+      padding: 1.2mm 3mm;
+      border-radius: 12px;
+      font-size: 8.5pt;
+      font-weight: 800;
+      display: inline-block;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+    }
+
+    .b-info { background: #bee3f8; color: #2a4365; }
+    .b-success { background: #c6f6d5; color: #22543d; }
+    .b-warning { background: #feebc8; color: #7b341e; }
+    .b-danger { background: #fed7d7; color: #742a2a; }
+    .b-primary { background: #c3dafe; color: #1a365d; }
+
+    .risk{
+      font-weight: 900;
+      font-size: 9.5pt;
+      padding: 1mm 2mm;
+      border-radius: 8px;
+      display: inline-block;
+      text-transform: uppercase;
+    }
+
+    .risk-min { background: #e6fffa; color: #234e52; border: 1px solid #b2f5ea; }
+    .risk-low { background: #f0fff4; color: #22543d; border: 1px solid #c6f6d5; }
+    .risk-med { background: #fffaf0; color: #7b341e; border: 1px solid #feebc8; }
+    .risk-high { background: #fff5f5; color: #742a2a; border: 1px solid #fed7d7; }
+    .risk-crit { background: #742a2a; color: white; border: 1px solid #742a2a; }
+
+    .summary-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4mm;
+      margin-top: 5mm;
+    }
+
+    .summary-card{
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 10px;
+      padding: 4mm;
+      text-align: center;
+    }
+
+    .summary-card b{
+      display: block;
+      font-size: 16pt;
+      color: var(--primary);
+      margin-bottom: 1mm;
+    }
+
+    .summary-card span{
+      font-size: 9pt;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .code-box{
+      margin-top: 4mm;
+      border: 1px solid var(--line);
+      background: #0b1220;
+      color: #e2e8f0;
+      border-radius: 10px;
+      padding: 4mm;
+      font-family: Consolas, monospace;
+      font-size: 9.2pt;
+      line-height: 1.55;
+      overflow-x: auto;
+    }
+
+    .signature-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8mm;
+      margin-top: 10mm;
+    }
+
+    .signature-box{
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 5mm;
+      background: white;
+    }
+
+    .signature-box h3{
+      margin: 0 0 4mm 0;
+      font-size: 10pt;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .signature-line{
+      margin-top: 8mm;
+      border-top: 1px solid var(--muted);
+      padding-top: 2mm;
+      font-size: 9pt;
+      color: var(--muted);
+    }
+
+    footer{
+      margin-top: 12mm;
+      padding-top: 4mm;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 9pt;
+    }
+
+    footer .footer-left{
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    footer .footer-right{
+      font-style: italic;
+    }
+
+    .page-number{
+      position: absolute;
+      top: 8mm;
+      right: 15mm;
+      font-size: 9pt;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    @media print{
+      body{
+        background: white;
+      }
+      .page{
+        border:none;
+        margin:0;
+        width:100%;
+        border-radius: 0;
+        padding: 12mm;
+      }
+      .page-number{
+        position: fixed;
+        top: 8mm;
+        right: 12mm;
+      }
+      footer{
+        position: fixed;
+        bottom: 8mm;
+        left: 12mm;
+        right: 12mm;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <div class="page-number">Página 1 de 1</div>
+
+    <header class="header-report">
+      <div>
+        <span class="doc-tag">DOCUMENTO TÉCNICO</span>
+        <h1>Plataforma Web, Dashboard e Integración</h1>
+        <h2>Hackathon PUCE - UNACEM | Equipo GEOINNOVA</h2>
+      </div>
+
+      <div style="text-align:right">
+        <div style="font-weight:900; color:var(--primary); font-size:12pt;">UNACEM - PUCE</div>
+        <div style="font-size:9pt; color:var(--muted); margin-top:1mm;">Informe Técnico de Implementación</div>
+        <div style="font-size:9pt; color:var(--muted);">Versión: 1.0 Final</div>
+      </div>
+    </header>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <b>Nombre del Proyecto</b>
+        <span>Dashboard Analítico + Integración Predictiva</span>
+      </div>
+
+      <div class="meta-item">
+        <b>Evento</b>
+        <span>Hackathon PUCE - UNACEM</span>
+      </div>
+
+      <div class="meta-item">
+        <b>Tipo de Solución</b>
+        <span>Plataforma Web Analítica (BI) + Modelo Predictivo Integrado</span>
+      </div>
+
+      <div class="meta-item">
+        <b>Enfoque</b>
+        <span>Modular, Escalable y Orientado a Decisión Ejecutiva</span>
+      </div>
+
+      <div class="meta-item">
+        <b>Equipo</b>
+        <span>GEOINNOVA</span>
+      </div>
+
+      <div class="meta-item">
+        <b>Responsable Técnico</b>
+        <span>Johnatan Guacho <br>
+            Ricardo Carrion
+        </span>
+      </div>
+
+      <div class="meta-item">
+        <b>Confidencialidad</b>
+        <span>Datos Restringidos / Uso Interno UNACEM</span>
+      </div>
+
+      <div class="meta-item">
+        <b>Estado del Entregable</b>
+        <span>Final / Prototipo Funcional</span>
+      </div>
+    </div>
+
+    <div class="section-title">1. Introducción</div>
+
+    <p class="paragraph">
+      El presente documento describe de manera técnica y estructurada el desarrollo de la <strong>plataforma web</strong>
+      implementada durante la Hackathon PUCE - UNACEM, enfocada en la visualización de indicadores clave (KPIs),
+      tendencias temporales y análisis comparativo de incidentes reportados.
+    </p>
+
+    <p class="paragraph">
+      La solución fue construida con un enfoque de <strong>inteligencia de negocios (BI)</strong> y analítica de datos,
+      permitiendo transformar información compleja en gráficos y reportes comprensibles para usuarios técnicos y ejecutivos.
+    </p>
+
+    <p class="paragraph">
+      Adicionalmente, se integró un <strong>modelo predictivo</strong> entrenado previamente, el cual permite estimar escenarios futuros
+      mediante patrones históricos, complementando el dashboard con capacidades de análisis prospectivo.
+    </p>
+
+    <div class="warn-box">
+      <b>Restricción de datos:</b> Por políticas de confidencialidad establecidas por UNACEM, este documento no expone datos reales,
+      valores numéricos exactos, registros originales ni identificadores específicos. Se describe el funcionamiento en términos de variables,
+      estructura y flujo de procesamiento.
+    </div>
+
+    <div class="section-title">2. Objetivo General del Dashboard</div>
+
+    <p class="paragraph">
+      La plataforma web fue desarrollada con el objetivo de brindar a UNACEM una herramienta interactiva que permita
+      analizar incidentes reportados desde un enfoque estratégico, identificando patrones, riesgos y áreas críticas mediante visualizaciones.
+    </p>
+
+    <div class="subsection-title">2.1 Objetivos específicos</div>
+    <ul>
+      <li>Presentar indicadores clave (KPIs) consolidados de reportes e incidentes.</li>
+      <li>Facilitar el análisis temporal mediante filtros por año y trimestre.</li>
+      <li>Identificar tendencias de ocurrencia por tipo de evento, categoría y sitio.</li>
+      <li>Implementar comparaciones entre periodos para medir evolución y comportamiento.</li>
+      <li>Integrar predicciones automáticas mediante un modelo entrenado.</li>
+      <li>Generar una interfaz clara, moderna y ejecutiva para toma de decisiones.</li>
+      <li>Garantizar que la solución sea escalable y adaptable a producción.</li>
+    </ul>
+
+    <div class="section-title">3. Arquitectura General de la Solución</div>
+
+    <p class="paragraph">
+      La solución fue diseñada bajo un enfoque modular, separando componentes de forma que cada parte sea independiente,
+      reutilizable y fácilmente actualizable. Esto permite a UNACEM modificar o ampliar el sistema en el futuro
+      sin necesidad de reconstruir todo el proyecto.
+    </p>
+
+    <div class="subsection-title">3.1 Componentes principales</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:20%">Componente</th>
+          <th style="width:25%">Función</th>
+          <th style="width:25%">Tecnologías</th>
+          <th style="width:30%">Descripción técnica</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><b>Frontend Web</b></td>
+          <td>Visualización del dashboard</td>
+          <td>
+            <span class="badge b-info">HTML</span>
+            <span class="badge b-info">CSS</span>
+            <span class="badge b-info">JS</span>
+          </td>
+          <td>
+            Interfaz gráfica responsiva con filtros, KPIs y gráficas interactivas para análisis ejecutivo.
+          </td>
+        </tr>
+
+        <tr>
+          <td><b>Motor de Visualización</b></td>
+          <td>Gráficos dinámicos</td>
+          <td>
+            <span class="badge b-primary">Chart.js</span>
+          </td>
+          <td>
+            Renderizado de gráficos de barras, líneas, doughnut y comparativos para indicadores clave.
+          </td>
+        </tr>
+
+        <tr>
+          <td><b>Resultados Analíticos</b></td>
+          <td>Datos procesados</td>
+          <td>
+            <span class="badge b-info">JSON</span>
+            <span class="badge b-info">CSV</span>
+          </td>
+          <td>
+            Datos estructurados (agregados y anonimizados) generados mediante scripts analíticos y exportados al dashboard.
+          </td>
+        </tr>
+
+        <tr>
+          <td><b>API Predictiva</b></td>
+          <td>Ejecutar el modelo</td>
+          <td>
+            <span class="badge b-warning">Python</span>
+            <span class="badge b-warning">REST</span>
+          </td>
+          <td>
+            Servicio backend que carga el modelo entrenado y expone un endpoint para predicciones bajo demanda.
+          </td>
+        </tr>
+
+        <tr>
+          <td><b>Modelo Entrenado</b></td>
+          <td>Predicción de escenarios</td>
+          <td>
+            <span class="badge b-warning">ML</span>
+            <span class="badge b-warning">Joblib/Pickle</span>
+          </td>
+          <td>
+            Modelo entrenado con datos históricos procesados y exportado en formato serializado para inferencia.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      <b>Diseño modular:</b> La separación por capas (visualización, datos y predicción) permite mantener independencia técnica,
+      facilitando que UNACEM pueda integrar una base de datos real, actualizar el modelo o desplegar el sistema en servidores internos.
+    </div>
+
+    <div class="section-title">4. Tecnologías y Herramientas de Desarrollo</div>
+
+    <p class="paragraph">
+      La plataforma web fue implementada utilizando tecnologías estándar, priorizando portabilidad, compatibilidad
+      y facilidad de despliegue en entornos corporativos. Se evitó el uso de frameworks pesados para asegurar
+      que el sistema pueda ejecutarse sin dependencias complejas.
+    </p>
+
+    <div class="subsection-title">4.1 Stack principal</div>
+    <ul>
+      <li><b>HTML5:</b> estructura del dashboard y secciones de visualización.</li>
+      <li><b>CSS3:</b> estilos, diseño responsivo y presentación profesional.</li>
+      <li><b>JavaScript:</b> lógica del frontend, filtros, carga de datos y consumo de API.</li>
+      <li><b>Chart.js:</b> generación de gráficos interactivos.</li>
+      <li><b>Python:</b> integración con el modelo predictivo y ejecución de predicciones.</li>
+      <li><b>API REST:</b> canal de comunicación entre frontend y backend.</li>
+      <li><b>Git/GitHub:</b> versionamiento y control del proyecto.</li>
+    </ul>
+
+    <div class="subsection-title">4.2 Principios aplicados en el desarrollo</div>
+    <ul>
+      <li><b>Compatibilidad:</b> el dashboard puede abrirse en navegadores modernos sin instalaciones adicionales.</li>
+      <li><b>Portabilidad:</b> el proyecto puede ejecutarse localmente o en un servidor interno.</li>
+      <li><b>Escalabilidad:</b> estructura lista para conectar con una base de datos real.</li>
+      <li><b>Seguridad:</b> no se expone información sensible en frontend.</li>
+      <li><b>Separación de responsabilidades:</b> predicción independiente de visualización.</li>
+    </ul>
+
+    <div class="section-title">5. Diseño Funcional del Dashboard</div>
+
+    <p class="paragraph">
+      El dashboard fue construido con un enfoque orientado a usuarios ejecutivos y técnicos, buscando ofrecer una visión clara
+      del comportamiento de incidentes, su distribución y tendencias temporales.
+    </p>
+
+    <div class="subsection-title">5.1 Elementos principales de la interfaz</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30%">Elemento</th>
+          <th style="width:40%">Descripción</th>
+          <th style="width:30%">Finalidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>KPIs / Indicadores</b></td>
+          <td>Tarjetas con métricas consolidadas y resumen general.</td>
+          <td>Entrega rápida de información clave para decisión ejecutiva.</td>
+        </tr>
+
+        <tr>
+          <td><b>Gráficos comparativos</b></td>
+          <td>Barras, doughnut y gráficos de distribución por variables.</td>
+          <td>Identificar factores críticos por tipo, sitio o categoría.</td>
+        </tr>
+
+        <tr>
+          <td><b>Series temporales</b></td>
+          <td>Gráficos de línea y tendencias por trimestre.</td>
+          <td>Detectar incremento o reducción de incidentes por periodo.</td>
+        </tr>
+
+        <tr>
+          <td><b>Filtros dinámicos</b></td>
+          <td>Selección de año, periodo o categoría analítica.</td>
+          <td>Permitir análisis segmentado y comparativo por escenario.</td>
+        </tr>
+
+        <tr>
+          <td><b>Semáforo de desempeño</b></td>
+          <td>Clasificación cualitativa: Óptimo / Adecuado / Mejorable.</td>
+          <td>Interpretación rápida para identificar áreas críticas.</td>
+        </tr>
+
+        <tr>
+          <td><b>Módulo de predicción</b></td>
+          <td>Interfaz que consulta el modelo predictivo y muestra resultados.</td>
+          <td>Proyección de escenarios futuros como herramienta preventiva.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="success-box">
+      <b>Enfoque estratégico:</b> el dashboard fue diseñado para convertir información compleja en resultados interpretables,
+      priorizando claridad visual, lectura ejecutiva y reducción de carga técnica para el usuario final.
+    </div>
+
+    <div class="section-title">6. Flujo de Carga y Procesamiento de Datos</div>
+
+    <p class="paragraph">
+      Para garantizar seguridad y rendimiento, el dashboard consume información procesada y estructurada,
+      evitando el uso de datos crudos directamente en la interfaz. Los datos fueron previamente transformados
+      a formatos optimizados para visualización (por ejemplo, JSON y CSV agregados).
+    </p>
+
+    <div class="subsection-title">6.1 Estrategia de estructuración de datos</div>
+    <ul>
+      <li>Transformación de datos en estructuras agregadas por periodo (ejemplo: año-trimestre).</li>
+      <li>Consolidación por variables categóricas (tipo, sitio, categoría, género, etc.).</li>
+      <li>Exportación de tablas analíticas a formato JSON para consumo rápido desde JavaScript.</li>
+      <li>Reducción de registros individuales para evitar exposición de información sensible.</li>
+    </ul>
+
+    <div class="note-box">
+      <b>Optimización:</b> El uso de JSON permite que el dashboard cargue información de manera rápida y renderice gráficas sin retrasos,
+      incluso en entornos con hardware limitado.
+    </div>
+
+    <div class="section-title">7. Integración con el Modelo Predictivo</div>
+
+    <p class="paragraph">
+      Uno de los elementos principales del sistema es la integración con un modelo predictivo entrenado previamente,
+      el cual permite generar estimaciones futuras sobre incidentes bajo un enfoque preventivo.
+    </p>
+
+    <div class="subsection-title">7.1 Arquitectura de integración</div>
+    <p class="paragraph">
+      La comunicación entre el dashboard y el modelo se implementó mediante una API REST, donde el frontend realiza solicitudes
+      HTTP enviando variables de entrada, y recibe como respuesta predicciones estructuradas.
+    </p>
+
+    <div class="subsection-title">7.2 Flujo de predicción</div>
+    <ul>
+      <li>El usuario define parámetros dentro del dashboard (periodo, categoría, sitio, tipo, etc.).</li>
+      <li>El frontend genera un JSON estructurado con dichas variables.</li>
+      <li>Se envía una solicitud al endpoint del backend.</li>
+      <li>El backend carga el modelo entrenado y ejecuta inferencia.</li>
+      <li>El backend devuelve una respuesta con predicción y nivel de riesgo.</li>
+      <li>El dashboard presenta el resultado con gráficos, KPIs o semáforos.</li>
+    </ul>
+
+    <div class="subsection-title">7.3 Ejemplo de comunicación API (estructural)</div>
+    <div class="code-box">
+POST /predict HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+
+{
+  "periodo": "YYYY-T#",
+  "categoria_evento": "CATEGORIA",
+  "tipo_evento": "TIPO",
+  "sitio": "SITIO",
+  "tipo_empleado": "EMPLEADO|CONTRATISTA"
+}
+
+RESPONSE:
+
+{
+  "prediccion": "VALOR_ESTIMADO",
+  "nivel_riesgo": "BAJO|MEDIO|ALTO",
+  "mensaje": "INTERPRETACION_GENERAL"
+}
+    </div>
+
+    <div class="note-box">
+      <b>Desacoplamiento:</b> El dashboard no contiene lógica interna del modelo; únicamente consume el resultado.
+      Esto permite reemplazar el modelo en el futuro sin reescribir el frontend.
+    </div>
+
+    <div class="section-title">8. Interpretación y Presentación de Resultados</div>
+
+    <p class="paragraph">
+      El dashboard fue construido para que los resultados analíticos sean interpretables por usuarios no técnicos.
+      Por ello, se implementaron mecanismos visuales y semánticos como semáforos, rankings y KPIs.
+    </p>
+
+    <div class="subsection-title">8.1 Tipos de visualización implementados</div>
+    <ul>
+      <li><b>Gráficos de barras:</b> comparaciones entre categorías o tipos.</li>
+      <li><b>Gráficos doughnut:</b> distribución porcentual de eventos.</li>
+      <li><b>Gráficos de línea:</b> tendencias temporales por trimestre.</li>
+      <li><b>Ranking Top-N:</b> identificación de factores con mayor recurrencia.</li>
+      <li><b>Semáforo de riesgo:</b> clasificación interpretativa para decisión rápida.</li>
+    </ul>
+
+    <div class="subsection-title">8.2 Clasificación cualitativa (Semáforo)</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">Clasificación</th>
+          <th style="width:35%">Interpretación</th>
+          <th style="width:40%">Acción recomendada</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="risk risk-low">ÓPTIMO</span></td>
+          <td>Comportamiento controlado y bajo nivel de recurrencia.</td>
+          <td>Continuar monitoreo y mantener estrategias preventivas actuales.</td>
+        </tr>
+        <tr>
+          <td><span class="risk risk-med">ADECUADO</span></td>
+          <td>Se detectan patrones moderados o incrementos leves.</td>
+          <td>Revisión preventiva, refuerzo de controles y seguimiento periódico.</td>
+        </tr>
+        <tr>
+          <td><span class="risk risk-high">MEJORABLE</span></td>
+          <td>Existe recurrencia significativa o tendencia creciente.</td>
+          <td>Acciones correctivas inmediatas y análisis detallado del área o causa.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">9. Seguridad y Confidencialidad de la Plataforma</div>
+
+    <p class="paragraph">
+      Debido a que la información proporcionada por UNACEM se considera sensible y de uso interno,
+      se establecieron prácticas para evitar exposición de datos y garantizar que el dashboard cumpla con criterios de confidencialidad.
+    </p>
+
+    <div class="subsection-title">9.1 Principales medidas aplicadas</div>
+    <ul>
+      <li>Uso de datos agregados en lugar de registros individuales.</li>
+      <li>No publicación de identificadores personales o campos sensibles.</li>
+      <li>Separación del dataset real y el dashboard público.</li>
+      <li>Modelo predictivo utilizado únicamente para inferencia, sin exposición de entrenamiento.</li>
+      <li>Arquitectura orientada a despliegue interno en instalaciones UNACEM.</li>
+    </ul>
+
+    <div class="warn-box">
+      <b>Importante:</b> Se recomienda que la solución final sea desplegada únicamente en un entorno privado
+      (red interna UNACEM o servidor corporativo), evitando exposición en servidores públicos sin autenticación.
+    </div>
+
+    <div class="section-title">10. Requisitos Técnicos para Ejecución en Instalaciones UNACEM</div>
+
+    <p class="paragraph">
+      Con el objetivo de permitir que el equipo técnico de UNACEM pueda emular y ejecutar la solución desarrollada,
+      se detallan los requisitos mínimos y recomendaciones para despliegue local o corporativo.
+    </p>
+
+    <div class="subsection-title">10.1 Requisitos de hardware recomendados</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30%">Recurso</th>
+          <th style="width:35%">Mínimo recomendado</th>
+          <th style="width:35%">Óptimo recomendado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>CPU</b></td>
+          <td>Intel i3 / Ryzen 3 (2 núcleos)</td>
+          <td>Intel i5 / Ryzen 5 (4 núcleos o más)</td>
+        </tr>
+        <tr>
+          <td><b>RAM</b></td>
+          <td>8 GB</td>
+          <td>16 GB</td>
+        </tr>
+        <tr>
+          <td><b>Almacenamiento</b></td>
+          <td>5 GB libres</td>
+          <td>20 GB libres (para logs y datasets adicionales)</td>
+        </tr>
+        <tr>
+          <td><b>Sistema Operativo</b></td>
+          <td>Windows 10/11 o Linux</td>
+          <td>Linux Server / Windows Server</td>
+        </tr>
+        <tr>
+          <td><b>Red</b></td>
+          <td>LAN interna estable</td>
+          <td>Servidor interno accesible desde red corporativa</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="subsection-title">10.2 Requisitos de software</div>
+    <ul>
+      <li><b>Python:</b> versión 3.10.x (recomendado 3.10.8 para compatibilidad exacta).</li>
+      <li><b>Dependencias:</b> instalación mediante requirements.txt.</li>
+      <li><b>Navegador:</b> Chrome / Edge actualizado.</li>
+      <li><b>Servidor local opcional:</b> (para servir frontend) python -m http.server.</li>
+    </ul>
+
+    <div class="subsection-title">10.3 Configuración de entorno controlado (Recomendado)</div>
+    <p class="paragraph">
+      Para garantizar replicabilidad, se recomienda crear un entorno virtual de Python, aislando dependencias del sistema operativo.
+      Esto permite a UNACEM ejecutar el modelo sin conflictos con otras instalaciones de Python.
+    </p>
+
+    <div class="code-box">
+# CREACIÓN DE ENTORNO VIRTUAL
+python -m venv venv
+
+# ACTIVACIÓN EN WINDOWS
+venv\Scripts\activate
+
+# ACTIVACIÓN EN LINUX / MAC
+source venv/bin/activate
+
+# INSTALACIÓN DE DEPENDENCIAS
+pip install -r requirements.txt
+
+# EJECUCIÓN DE LA API (EJEMPLO)
+python app.py
+    </div>
+
+    <div class="subsection-title">10.4 Ejecución del dashboard</div>
+    <p class="paragraph">
+      El dashboard puede ejecutarse de dos maneras:
+    </p>
+
+    <ul>
+      <li><b>Modo local:</b> abrir el archivo index.html directamente desde el navegador.</li>
+      <li><b>Modo servidor interno:</b> alojar el dashboard en un servidor HTTP dentro de la red corporativa.</li>
+    </ul>
+
+    <div class="code-box">
+# OPCIÓN SERVIDOR LOCAL SIMPLE
+cd dashboard
+python -m http.server 5500
+
+# Luego acceder en navegador:
+http://localhost:5500
+    </div>
+
+    <div class="note-box">
+      <b>Recomendación UNACEM:</b> En un entorno corporativo real, se recomienda desplegar la API del modelo
+      en un servidor interno, y el dashboard como un portal web accesible desde la intranet institucional.
+    </div>
+
+    <div class="section-title">11. Escalabilidad y Propuesta de Implementación Corporativa</div>
+
+    <p class="paragraph">
+      La solución fue concebida como un prototipo funcional, sin embargo su diseño modular permite una transición
+      hacia un entorno productivo real dentro de UNACEM. Esto significa que el sistema puede evolucionar de un dashboard local
+      a una plataforma corporativa de análisis.
+    </p>
+
+    <div class="subsection-title">11.1 Escenarios de escalabilidad</div>
+    <ul>
+      <li>Conexión directa a base de datos (SQL Server / PostgreSQL / Oracle) para actualización automática.</li>
+      <li>Integración con sistemas internos de reportes y gestión de incidentes.</li>
+      <li>Automatización de pipeline de datos (ETL) para procesamiento periódico.</li>
+      <li>Despliegue en servidor interno con control de acceso (usuarios y roles).</li>
+      <li>Integración con autenticación corporativa (Active Directory / LDAP).</li>
+    </ul>
+
+    <div class="subsection-title">11.2 Mejoras futuras sugeridas</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">Mejora</th>
+          <th style="width:45%">Descripción</th>
+          <th style="width:15%">Impacto</th>
+          <th style="width:15%">Prioridad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Autenticación y roles</b></td>
+          <td>Implementar login y permisos para restringir acceso por áreas y perfiles.</td>
+          <td>Alto</td>
+          <td><span class="risk risk-high">ALTA</span></td>
+        </tr>
+        <tr>
+          <td><b>Base de datos corporativa</b></td>
+          <td>Reemplazar JSON por conexión directa a BD para datos en tiempo real.</td>
+          <td>Alto</td>
+          <td><span class="risk risk-high">ALTA</span></td>
+        </tr>
+        <tr>
+          <td><b>Automatización ETL</b></td>
+          <td>Crear pipeline automático de limpieza y carga de datos semanal/mensual.</td>
+          <td>Medio</td>
+          <td><span class="risk risk-med">MEDIA</span></td>
+        </tr>
+        <tr>
+          <td><b>Logs y auditoría</b></td>
+          <td>Registrar accesos y consultas para trazabilidad y control interno.</td>
+          <td>Medio</td>
+          <td><span class="risk risk-med">MEDIA</span></td>
+        </tr>
+        <tr>
+          <td><b>Explicabilidad del modelo</b></td>
+          <td>Incluir interpretabilidad (SHAP/LIME) para justificar predicciones.</td>
+          <td>Alto</td>
+          <td><span class="risk risk-med">MEDIA</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">12. Resumen Ejecutivo Técnico</div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <b>3</b>
+        <span>Módulos Principales</span>
+      </div>
+
+      <div class="summary-card">
+        <b>BI</b>
+        <span>Enfoque Analítico</span>
+      </div>
+
+      <div class="summary-card">
+        <b>REST</b>
+        <span>Integración Modelo</span>
+      </div>
+
+      <div class="summary-card">
+        <b>MOD</b>
+        <span>Arquitectura Modular</span>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <b>Resultado:</b> El sistema implementado permite visualizar información de forma ejecutiva mediante dashboards interactivos,
+      y complementa el análisis con predicciones automatizadas, siendo una herramienta útil para prevención, monitoreo y toma de decisiones.
+    </div>
+
+    <div class="section-title">13. Conclusiones</div>
+
+    <p class="paragraph">
+      La plataforma web desarrollada en la Hackathon PUCE - UNACEM cumple con los objetivos propuestos,
+      ofreciendo una solución analítica clara, modular y orientada a usuarios corporativos.
+    </p>
+
+    <p class="paragraph">
+      El dashboard permite transformar datos en indicadores comprensibles mediante visualizaciones dinámicas,
+      mientras que la integración con el modelo predictivo añade una capa de valor estratégico al permitir proyecciones futuras.
+    </p>
+
+    <p class="paragraph">
+      Finalmente, debido a la estructura modular del sistema, UNACEM puede replicar y desplegar el proyecto
+      en un entorno controlado, así como escalarlo hacia una plataforma corporativa con autenticación, base de datos
+      y automatización de procesamiento de información.
+    </p>
+
+    <footer>
+      <div class="footer-left">dev_johnatan - ghost 2026 | in collaboration with GEOINNOVA</div>
+      <div class="footer-right"> Plataforma Web + Dashboard + Integración Predictiva</div>
+    </footer>
+
+  </main>
+</body>
+</html>
