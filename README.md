@@ -245,7 +245,7 @@ Para consultas técnicas, soporte de instalación o replicación del entorno:
 | Campo | Información |
 |-------|-------------|
 | **Nombre** | Johnatan Guacho |
-| **Correo** | johnatan.guacho@espoch.edu.ec |
+| **Correo** | johnatan.guacho@espoch.edu.ec | :)                  
 
 ---
 
