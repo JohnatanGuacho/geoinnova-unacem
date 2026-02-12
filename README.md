@@ -96,7 +96,6 @@ GEOINNOVA/
 └── README.md
 ```
 
-> **⚠️ Nota:** El archivo `reportes_por_trimestre_organizado.csv` no debe incluir datos confidenciales si el repositorio es público.
 
 ---
 
